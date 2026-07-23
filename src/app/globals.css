@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+:root {
+  --background: #0b0620;
+  --foreground: #f4f2ff;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  background: var(--background);
+  color: var(--foreground);
+  overscroll-behavior-y: none;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.safe-top {
+  padding-top: max(1rem, env(safe-area-inset-top));
+}
+
+.safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.flip-scene {
+  perspective: 1600px;
+}
+
+.flip-card {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.flip-card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.flip-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-face-back {
+  transform: rotateY(180deg);
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 18px rgba(168, 85, 247, 0);
+  }
+}
+
+.pulse-ring {
+  animation: pulse-ring 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation: fade-in-up 0.35s ease-out both;
+}
